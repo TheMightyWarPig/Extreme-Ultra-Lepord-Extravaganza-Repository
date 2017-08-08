@@ -184,4 +184,3 @@ def findDigitCount(Number):
 	while pow(10, digits) < Number + 1 :
 		digits = digits + 1
 	return digits
-print findDigit(123456, 4)
