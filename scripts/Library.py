@@ -16,26 +16,30 @@ def findPrimeFactor(Number):
 				biggestPrime = Factor
 		Factor = Factor + 1
 	return biggestPrime
-def findDigit(Number, Place):
-	# 1 is for the highest digit but with the value it originally had, 2 is for the rest of the number and 3 is for the first digit as a 1 digit number isolated
-	totalPower = pow(10, findDigitCount(Number) -1)
-	N = Number
-	digitCount = 1
-	count = 0
-	digitEstimate = findDigitCount(Number)
-	unit = totalPower
-	while digitCount > Place - 1:
-		digitEstimate = 0
-		while digitEstimate * unit + unit < N:
-			digitEstimate = digitEstimate + 1
-		N = N - digitEstimate * unit
-		print(digitEstimate)
-		digitCount = digitCount - 1
-		unit = unit/10
-	return digitEstimate	
+#def findDigit(Number, Place):
+#	totalPower = pow(10, findDigitCount(Number) -1)
+#	N = Number
+#	digitCount = 1
+#	count = 0
+#	digitEstimate = findDigitCount(Number)
+#	unit = totalPower
+#	while digitCount > Place - 1:
+#		digitEstimate = 0
+#		while digitEstimate * unit + unit < N:
+#			digitEstimate = digitEstimate + 1
+#		N = N - digitEstimate * unit
+#		print(digitEstimate)
+#		digitCount = digitCount - 1
+#		unit = unit/10
+#	return digitEstimate	
+#Out of order
 
-
-
+def findTopDigit(Number):
+	unit = 10**(findDigitCount(Number)-1)
+	current = 0
+	while(current + unit <= Number):
+		current = current + unit
+	return current/unit
 
 
 def square(Number):
@@ -184,5 +188,13 @@ def findDigitCount(Number):
 	while pow(10, digits) < Number + 1 :
 		digits = digits + 1
 	return digits
-
-print("e")
+def convertToBaseTen(Number, OldBase):
+	newNumber = 0
+	while Number > 0:
+		power = findDigitCount(Number)-1
+		topDigit = findTopDigit(Number)
+		removedDigit = topDigit * (10**(power))
+		difference = topDigit *(OldBase**power)
+		newNumber = newNumber + difference
+		Number = Number-removedDigit
+	return newNumber
