@@ -29,7 +29,7 @@ def findDigit(Number, Place):
 		while digitEstimate * unit + unit < N:
 			digitEstimate = digitEstimate + 1
 		N = N - digitEstimate * unit
-		print digitEstimate
+		print(digitEstimate)
 		digitCount = digitCount - 1
 		unit = unit/10
 	return digitEstimate	
@@ -61,7 +61,7 @@ def generatePrimes(Number):
 	counter = 0
 	while counter < Number + 1:
 		if testPrime(N):
-			print N
+			print(N)
 			counter = counter + 1
 		N = N + 1
 def testPythagrean(a, b, c):
@@ -77,11 +77,11 @@ def findPythagreanWithDigitSum():
 			c = 1
 			while c < 1000:
 				if testPythagrean(a, b, c):
-					print a + b + c
+					print(a + b + c)
 					if a + b + c == 1000:
-						print a
-						print b
-						print c
+						print(a)
+						print (b)
+						print (c)
 						return True
 				c = c + 1
 			b = b + 1
@@ -92,7 +92,7 @@ def sumPrimes(Maximum):
 	while N < Maximum:
 		if testPrime(N):
 			total = total + N
-			print N
+			print(N)
 		N = N + 1
 	return total
 def factorial(Number):
@@ -139,7 +139,7 @@ def findNumberWithFactors(Factors):
 	N = 1
 	while countDivisers(N) < Factors:
 		N = N+1
-		print countDivisers(N)
+		print(countDivisers(N))
 	return N
 def findTriangularWithFactors():
 	infiniteLoop = True
@@ -169,7 +169,7 @@ def millionCollatz():
 		if countCollatz(N) > count:
 			count = countCollatz(N)
 			currentHighest = N
-			print countCollatz(N)
+			print(countCollatz(N))
 		N = N + 1
 	return currentHighest
 def digitHighestFind(Number, highest):
@@ -184,3 +184,5 @@ def findDigitCount(Number):
 	while pow(10, digits) < Number + 1 :
 		digits = digits + 1
 	return digits
+
+print("e")
