@@ -16,6 +16,7 @@ def findPrimeFactor(Number):
 				biggestPrime = Factor
 		Factor = Factor + 1
 	return biggestPrime
+
 #def findDigit(Number, Place):
 #	totalPower = pow(10, findDigitCount(Number) -1)
 #	N = Number
@@ -60,6 +61,7 @@ def squareSum(Minimum, Maximum):
 		currentSum = currentSum + N
 		N = N + 1
 	return square(currentSum)
+
 def generatePrimes(Number):
 	N = 1
 	counter = 0
@@ -68,11 +70,13 @@ def generatePrimes(Number):
 			print(N)
 			counter = counter + 1
 		N = N + 1
+
 def testPythagrean(a, b, c):
 	if a*a + b*b == c*c:
 		return True
 	else:
 		return False
+
 def findPythagreanWithDigitSum():
 	a = 1
 	while a < 1000:
@@ -90,6 +94,7 @@ def findPythagreanWithDigitSum():
 				c = c + 1
 			b = b + 1
 		a = a + 1
+
 def sumPrimes(Maximum):
 	N = 2
 	total = 0
@@ -99,6 +104,7 @@ def sumPrimes(Maximum):
 			print(N)
 		N = N + 1
 	return total
+
 def factorial(Number):
 	N = Number
 	subtractor = 1
@@ -107,6 +113,7 @@ def factorial(Number):
 		currentNumber = currentNumber *(Number - subtractor)
 		subtractor = subtractor + 1
 	return currentNumber
+
 def countDivisers(Number):
 	factor = 2
 	primeFactorsSoFar = 0
@@ -139,12 +146,14 @@ def slowCountDivisers(Number):
 			divisors = divisors + 1
 		factor = factor + 1
 	return divisors
+
 def findNumberWithFactors(Factors):
 	N = 1
 	while countDivisers(N) < Factors:
 		N = N+1
 		print(countDivisers(N))
 	return N
+
 def findTriangularWithFactors():
 	infiniteLoop = True
 	currentTriangle = 0
@@ -154,6 +163,7 @@ def findTriangularWithFactors():
 		currentNumber = currentNumber + 1
 		if countDivisers(currentTriangle) > 500:
 			return currentTriangle
+
 def countCollatz(Number):
 	N = Number
 	count = 1
@@ -165,6 +175,7 @@ def countCollatz(Number):
 			N = 3*N + 1
 			count = count  + 1
 	return count
+
 def millionCollatz():
 	N = 1
 	count = 0
@@ -176,6 +187,7 @@ def millionCollatz():
 			print(countCollatz(N))
 		N = N + 1
 	return currentHighest
+
 def digitHighestFind(Number, highest):
 	unit = pow(10, highest -1)
 	counter = 0
@@ -183,11 +195,13 @@ def digitHighestFind(Number, highest):
 		counter = counter + unit
 	N = counter/unit
 	return N 
+
 def findDigitCount(Number):
 	digits = 0
 	while pow(10, digits) < Number + 1 :
 		digits = digits + 1
 	return digits
+
 def convertToBaseTen(Number, OldBase):
 	newNumber = 0
 	while Number > 0:
@@ -198,3 +212,21 @@ def convertToBaseTen(Number, OldBase):
 		newNumber = newNumber + difference
 		Number = Number-removedDigit
 	return newNumber
+def convertToAlternateDigit(Number, NewBase):
+	newNumber = 0
+	while(Number > 0):
+		newDigit = 1
+		power = 0
+		while(NewBase**(power+1)<= Number):
+			power = power + 1
+		while((newDigit +1) * (NewBase**power) <Number):
+			newDigit = newDigit + 1
+		newNumber = newNumber + ((10**power) * newDigit)
+		Number = Number - ((NewBase**power) * newDigit)
+	return newNumber
+x = 0
+def convertBase(Number, NewBase, OldBase):
+	#only workable in bases under 10
+	return convertToAlternateDigit(convertToBaseTen(Number,OldBase), NewBase)
+
+
