@@ -215,6 +215,3 @@ def digits(Number, StartPlace, Length):
 	#start place is the right most digit, while length proceeds leftwards in the number
 	Number = ((Number%(10**(StartPlace+Length))) - (Number%(10**(StartPlace))))/(10**(StartPlace))
 	Number =Number - (Number % 1)
-	return Number
-
-print(((1/3) * (10**15))%1)
