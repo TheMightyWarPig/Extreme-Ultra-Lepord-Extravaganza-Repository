@@ -1,7 +1,7 @@
 
 def testPrime(Number):
 	tester = 2
-	while tester*tester < Number+1:
+	while tester*tester <= Number:
 		if Number % tester == 0:
 			return False
 		tester = tester + 1
@@ -215,3 +215,5 @@ def digits(Number, StartPlace, Length):
 	#start place is the right most digit, while length proceeds leftwards in the number
 	Number = ((Number%(10**(StartPlace+Length))) - (Number%(10**(StartPlace))))/(10**(StartPlace))
 	Number =Number - (Number % 1)
+print("testing version control")
+
