@@ -17,34 +17,8 @@ def findPrimeFactor(Number):
 		Factor = Factor + 1
 	return biggestPrime
 
-#def findDigit(Number, Place):
-#	totalPower = pow(10, findDigitCount(Number) -1)
-#	N = Number
-#	digitCount = 1
-#	count = 0
-#	digitEstimate = findDigitCount(Number)
-#	unit = totalPower
-#	while digitCount > Place - 1:
-#		digitEstimate = 0
-#		while digitEstimate * unit + unit < N:
-#			digitEstimate = digitEstimate + 1
-#		N = N - digitEstimate * unit
-#		print(digitEstimate)
-#		digitCount = digitCount - 1
-#		unit = unit/10
-#	return digitEstimate	
-#Out of order
-
-def findTopDigit(Number):
-	unit = 10**(findDigitCount(Number)-1)
-	current = 0
-	while(current + unit <= Number):
-		current = current + unit
-	return current/unit
-
-
 def square(Number):
-	return pow(Number, 3)
+	return pow(Number, 2)
 
 def sumSquare(Minimum, Maximum):
 	N = Minimum
@@ -188,13 +162,9 @@ def millionCollatz():
 		N = N + 1
 	return currentHighest
 
-def digitHighestFind(Number, highest):
-	unit = pow(10, highest -1)
-	counter = 0
-	while counter + unit < Number + 1:
-		counter = counter + unit
-	N = counter/unit
-	return N 
+def findTopDigit(Number):
+	
+	return (digit(Number, findDigitCount(Number)))
 
 def findDigitCount(Number):
 	digits = 0
@@ -212,6 +182,7 @@ def convertToBaseTen(Number, OldBase):
 		newNumber = newNumber + difference
 		Number = Number-removedDigit
 	return newNumber
+
 def convertToAlternateDigit(Number, NewBase):
 	newNumber = 0
 	while(Number > 0):
@@ -225,8 +196,25 @@ def convertToAlternateDigit(Number, NewBase):
 		Number = Number - ((NewBase**power) * newDigit)
 	return newNumber
 x = 0
+
 def convertBase(Number, NewBase, OldBase):
 	#only workable in bases under 10
 	return convertToAlternateDigit(convertToBaseTen(Number,OldBase), NewBase)
 
+def concatinate(FirstNumber, SecondNumber):
+	FirstNumber = FirstNumber * (10**findDigitCount(SecondNumber))
+	return (FirstNumber + SecondNumber)
 
+def digit(Number, Place):
+	# 0 being the ones place, 1 being the 10's place, and -1 being the 0.1s place
+	Number = ((Number%(10**Place)) - (Number%(10**(Place-1))))/(10**(Place-1))
+	Number =Number - (Number % 1)
+	return Number
+
+def digits(Number, StartPlace, Length):
+	#start place is the right most digit, while length proceeds leftwards in the number
+	Number = ((Number%(10**(StartPlace+Length))) - (Number%(10**(StartPlace))))/(10**(StartPlace))
+	Number =Number - (Number % 1)
+	return Number
+
+print(((1/3) * (10**15))%1)
