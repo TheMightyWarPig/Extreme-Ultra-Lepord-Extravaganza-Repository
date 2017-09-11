@@ -250,4 +250,3 @@ def massTruncatableTest():
 			amountOfPrimes = amountOfPrimes + 1
 		number = number + 1
 	return "I hope that was sufficient"
-print(massTruncatableTest())
