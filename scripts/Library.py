@@ -211,6 +211,7 @@ def digits(Number, StartPlace, Length):
 	#start place is the right most digit, while length proceeds leftwards in the number
 	Number = ((Number%(10**(StartPlace+Length))) - (Number%(10**(StartPlace))))/(10**(StartPlace))
 	Number =Number - (Number % 1)
+	return Number
 
 def rounded(Number, Place):
 # 0 being the ones place, 1 being the 10's place, and -1 being the 0.1s place
@@ -219,12 +220,35 @@ def rounded(Number, Place):
 	return Number
 
 
-def testTruncatablePrime(Number):
+def testTruncatableRight(Number):
 	truncatablePrime = True
 	while Number > 0 and truncatablePrime == True:
 		truncatablePrime = testPrime(Number)
 		digitCount = findDigitCount(Number)
 		Number = Number - (rounded(Number, digitCount))
-		print(Number)
 	return truncatablePrime
 
+def testTruncatableLeft(Number):
+	truncatablePrime = True
+	digitCount = findDigitCount(Number)
+	while (digitCount-1) > 0 and truncatablePrime == True:
+		truncatablePrime = testPrime(Number)
+		Number = digits(Number, 1, (digitCount-1))
+		print(Number)
+		digitCount = digitCount - 1
+	return truncatablePrime
+
+
+#def massTruncableTest():
+#	number = 11
+#	amountOfPrimes = 0
+#	adder = 0
+#	while amountOfPrimes <= 11:
+#		if testTruncatablePrime(number) == True:
+#			adder = adder + number
+#			print(number)
+#			print(adder)
+#		number = number + 1
+#	return "I hope that was sufficient"
+
+print(testTruncatableLeft(3797))
