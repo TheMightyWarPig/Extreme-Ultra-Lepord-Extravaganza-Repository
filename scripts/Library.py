@@ -231,24 +231,23 @@ def testTruncatableRight(Number):
 def testTruncatableLeft(Number):
 	truncatablePrime = True
 	digitCount = findDigitCount(Number)
-	while (digitCount-1) > 0 and truncatablePrime == True:
+	while (digitCount) > 0 and truncatablePrime == True:
 		truncatablePrime = testPrime(Number)
 		Number = digits(Number, 1, (digitCount-1))
-		print(Number)
 		digitCount = digitCount - 1
 	return truncatablePrime
 
 
-#def massTruncableTest():
-#	number = 11
-#	amountOfPrimes = 0
-#	adder = 0
-#	while amountOfPrimes <= 11:
-#		if testTruncatablePrime(number) == True:
-#			adder = adder + number
-#			print(number)
-#			print(adder)
-#		number = number + 1
-#	return "I hope that was sufficient"
-
-print(testTruncatableLeft(3797))
+def massTruncatableTest():
+	number = 11
+	amountOfPrimes = 0
+	adder = 0
+	while amountOfPrimes <= 10:
+		if testTruncatableRight(number) and testTruncatableLeft(number):
+			adder = adder + number
+			print(number)
+			print(adder)
+			amountOfPrimes = amountOfPrimes + 1
+		number = number + 1
+	return "I hope that was sufficient"
+print(massTruncatableTest())
