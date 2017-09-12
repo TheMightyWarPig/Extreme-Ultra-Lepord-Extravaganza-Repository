@@ -208,11 +208,14 @@ def concatinate(FirstNumber, SecondNumber):
 	return (FirstNumber + SecondNumber)
 
 
- def digit(Number, Place):
- 	# 0 being the ones place, 1 being the 10's place, and -1 being the 0.1s place
- 	Number = ((Number%(10**Place)) - (Number%(10**(Place-1))))/(10**(Place-1))
- 	Number =Number - (Number % 1)
- 	return Number
+def digit(Number, Place):
+	# 0 being the ones place, 1 being the 10's place, and -1 being the 0.1s place
+	Number = Number%(10**(Place+1))
+	print(Number)
+	Number = Number - (Number%(10**(Place)))
+	print(Number)
+	Number = Number/(10**Place)
+	return Number
 	
 def digits(Number, StartPlace, Length):
 	#start place is the right most digit, while length proceeds leftwards in the number
