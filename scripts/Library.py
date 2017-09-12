@@ -274,7 +274,17 @@ def testCircularPrimes(Number):
 	isPrime = testPrime(Number)
 	while isPrime == True and currentDigit<digitCount:
 		Number = rotateNumber(Number)
-		print(Number)
 		isPrime = testPrime(Number)
 		currentDigit = currentDigit + 1
 	return isPrime
+	
+def findMassCircularPrimes(Cap):
+	x = 2
+	counter = 0
+	while x < Cap:
+		if testCircularPrimes(x):
+			print(x)
+			counter = counter + 1
+			print(counter)
+		x = x + 1
+	return counter
