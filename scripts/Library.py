@@ -257,3 +257,11 @@ def massTruncatableTest():
 			amountOfPrimes = amountOfPrimes + 1
 		number = number + 1
 	return "I hope that was sufficient"
+
+def rotateNumber(Number):
+	digitCount = findDigitCount(Number)
+	shiftingDigit = digit(Number, 0)
+	Number = Number/10
+	Number = Number%1
+	Number = Number + (shiftingDigit *(10**digitCount))
+	return Number
