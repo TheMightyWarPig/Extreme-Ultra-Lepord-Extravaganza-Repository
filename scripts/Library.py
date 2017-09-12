@@ -211,9 +211,7 @@ def concatinate(FirstNumber, SecondNumber):
 def digit(Number, Place):
 	# 0 being the ones place, 1 being the 10's place, and -1 being the 0.1s place
 	Number = Number%(10**(Place+1))
-	print(Number)
 	Number = Number - (Number%(10**(Place)))
-	print(Number)
 	Number = Number/(10**Place)
 	return Number
 	
@@ -264,7 +262,7 @@ def massTruncatableTest():
 def rotateNumber(Number):
 	digitCount = findDigitCount(Number)
 	shiftingDigit = digit(Number, 0)
+	Number = Number-(Number%10)
 	Number = Number/10
-	Number = Number%1
-	Number = Number + (shiftingDigit *(10**digitCount))
+	Number = Number + (shiftingDigit *(10**(digitCount-1)))
 	return Number
