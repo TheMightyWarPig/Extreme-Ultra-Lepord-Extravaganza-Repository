@@ -266,3 +266,15 @@ def rotateNumber(Number):
 	Number = Number/10
 	Number = Number + (shiftingDigit *(10**(digitCount-1)))
 	return Number
+
+def testCircularPrimes(Number):
+	isPrime = True
+	digitCount = findDigitCount(Number)
+	currentDigit = 1
+	isPrime = testPrime(Number)
+	while isPrime == True and currentDigit<digitCount:
+		Number = rotateNumber(Number)
+		print(Number)
+		isPrime = testPrime(Number)
+		currentDigit = currentDigit + 1
+	return isPrime
