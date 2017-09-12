@@ -211,9 +211,7 @@ def concatinate(FirstNumber, SecondNumber):
 def digit(Number, Place):
 	# 0 being the ones place, 1 being the 10's place, and -1 being the 0.1s place
 	Number = Number%(10**(Place+1))
-	print(Number)
 	Number = Number - (Number%(10**(Place)))
-	print(Number)
 	Number = Number/(10**Place)
 	return Number
 	
@@ -260,3 +258,33 @@ def massTruncatableTest():
 			amountOfPrimes = amountOfPrimes + 1
 		number = number + 1
 	return "I hope that was sufficient"
+
+def rotateNumber(Number):
+	digitCount = findDigitCount(Number)
+	shiftingDigit = digit(Number, 0)
+	Number = Number-(Number%10)
+	Number = Number/10
+	Number = Number + (shiftingDigit *(10**(digitCount-1)))
+	return Number
+
+def testCircularPrimes(Number):
+	isPrime = True
+	digitCount = findDigitCount(Number)
+	currentDigit = 1
+	isPrime = testPrime(Number)
+	while isPrime == True and currentDigit<digitCount:
+		Number = rotateNumber(Number)
+		isPrime = testPrime(Number)
+		currentDigit = currentDigit + 1
+	return isPrime
+	
+def findMassCircularPrimes(Cap):
+	x = 2
+	counter = 0
+	while x < Cap:
+		if testCircularPrimes(x):
+			print(x)
+			counter = counter + 1
+			print(counter)
+		x = x + 1
+	return counter
