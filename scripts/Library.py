@@ -1,7 +1,9 @@
 
 def testPrime(Number):
+	if Number == 1:
+		return False
 	tester = 2
-	while tester*tester < Number+1:
+	while tester*tester <= Number:
 		if Number % tester == 0:
 			return False
 		tester = tester + 1
@@ -204,14 +206,47 @@ def convertBase(Number, NewBase, OldBase):
 def concatinate(FirstNumber, SecondNumber):
 	FirstNumber = FirstNumber * (10**findDigitCount(SecondNumber))
 	return (FirstNumber + SecondNumber)
-
-def digit(Number, Place):
-	# 0 being the ones place, 1 being the 10's place, and -1 being the 0.1s place
-	Number = ((Number%(10**Place)) - (Number%(10**(Place-1))))/(10**(Place-1))
-	Number =Number - (Number % 1)
-	return Number
-
+	
 def digits(Number, StartPlace, Length):
 	#start place is the right most digit, while length proceeds leftwards in the number
 	Number = ((Number%(10**(StartPlace+Length))) - (Number%(10**(StartPlace))))/(10**(StartPlace))
 	Number =Number - (Number % 1)
+	return Number
+
+def rounded(Number, Place):
+# 0 being the ones place, 1 being the 10's place, and -1 being the 0.1s place
+	Number = ((Number%(10**Place)) - (Number%(10**(Place-1))))
+	Number =Number - (Number % 1)
+	return Number
+
+
+def testTruncatableRight(Number):
+	truncatablePrime = True
+	while Number > 0 and truncatablePrime == True:
+		truncatablePrime = testPrime(Number)
+		digitCount = findDigitCount(Number)
+		Number = Number - (rounded(Number, digitCount))
+	return truncatablePrime
+
+def testTruncatableLeft(Number):
+	truncatablePrime = True
+	digitCount = findDigitCount(Number)
+	while (digitCount) > 0 and truncatablePrime == True:
+		truncatablePrime = testPrime(Number)
+		Number = digits(Number, 1, (digitCount-1))
+		digitCount = digitCount - 1
+	return truncatablePrime
+
+
+def massTruncatableTest():
+	number = 11
+	amountOfPrimes = 0
+	adder = 0
+	while amountOfPrimes <= 10:
+		if testTruncatableRight(number) and testTruncatableLeft(number):
+			adder = adder + number
+			print(number)
+			print(adder)
+			amountOfPrimes = amountOfPrimes + 1
+		number = number + 1
+	return "I hope that was sufficient"
